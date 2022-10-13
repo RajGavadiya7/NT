@@ -25,13 +25,14 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <div className="conainer">
           {/* Iterate over producs and return its cards along withs its unique dynamic product page link*/}
-          {dataproduct.map((obj: any) => {
+          {dataproduct.map((obj: any, key:number) => {
             return (
               <Link
                 href="/product/[obj.productid]"
                 as={`/product/${obj.productid}`}
+                key={key}
               >
-                <div className="card">
+                <div className="card" key={key}>
                   <ProductCard data={obj} />
                 </div>
               </Link>

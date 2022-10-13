@@ -55,11 +55,11 @@ const Product: NextPage = () => {
           <div className="reviews">
             {/* Iterate over reviews state and return its unique review card */}
             {
-            reviews.map((obj: any) => {
+            reviews.map((obj: any, key:number) => {
               if (obj.productid === id) {
                 return (
-                  <div className="review-card">
-                    <ReviewCard data={[obj, reviews, setReviews]} />
+                  <div className="review-card" key={key}>
+                    <ReviewCard data={[obj, reviews, setReviews]} key={key}/>
                   </div>
                 );
               }
