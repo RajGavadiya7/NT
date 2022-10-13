@@ -20,6 +20,7 @@ export default function RatingComponent(props: any) {
       placeholder="Rating out of 5"
       label="Rating out of 5"
       withAsterisk
+      // *
       onChange={(e) => {
         setRating(e || 5);
       }}

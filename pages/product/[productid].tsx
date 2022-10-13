@@ -32,7 +32,7 @@ const Product: NextPage = () => {
     <div>
       {/* Details about card data */}
       <div className="header">
-        <h1>Sasta Amazon</h1>
+        <h1>B4Buy</h1>
       </div>
       <div className="container-1">
         <div className="image-container">
