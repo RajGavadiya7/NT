@@ -16,7 +16,7 @@ export default function ProductCard(data: any) {
       <Group position="apart" mt="md" mb="xs">
         <Text weight={500}>{dataProduct.productname}</Text>
         <Badge color="pink" variant="light">
-          {dataProduct.productid + "::" + dataProduct.price}
+          {" ₹ " + dataProduct.price}
         </Badge>
       </Group>
 

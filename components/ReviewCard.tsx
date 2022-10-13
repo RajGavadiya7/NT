@@ -1,7 +1,7 @@
 import { Card, Image, Text, Badge, Button, Group } from "@mantine/core";
 import { Avatar } from "@mantine/core";
 export default function ReviewCard(data: any) {
-  const dataReview = data.data;
+  const dataReview = data.data[0];
   return (
     <div className="review-container">
       <div className="profile-pic">
@@ -18,11 +18,22 @@ export default function ReviewCard(data: any) {
           <p>{dataReview.rating}</p>
         </div>
         <p>{dataReview.discription}</p>
+        <p
+          className="delete"
+          onClick={() => {
+            const newReview = data.data[1].filter((obj: any) => {
+              return obj.id !== dataReview.id;
+            });
+            data.data[2](newReview);
+          }}
+        >
+          Delete
+        </p>
       </div>
       <style>
         {`
             .review-container{
-                width:100vw;
+                width:100%;
                 height:8rem;
                 display:flex;
                 flex-direction:row;
@@ -30,6 +41,7 @@ export default function ReviewCard(data: any) {
                 background:#dedede;
                 margin-top:1rem;
                 padding:1rem;
+                position:relative;
             }
 
             .profile-info{
@@ -49,6 +61,14 @@ export default function ReviewCard(data: any) {
             }
             .details p{
                 margin-left:1rem;
+            }
+
+            .delete{
+              color: red;
+              position:absolute;
+              right:1rem;
+              bottom:0rem;
+              cursor:pointer;
             }
         `}
       </style>
