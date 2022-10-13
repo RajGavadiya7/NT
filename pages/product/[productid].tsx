@@ -19,6 +19,7 @@ const Product: NextPage = () => {
   useEffect(() => {
     console.log(reviews);
   }, [reviews]);
+
   // Product code page
   return (
     <div>
@@ -43,7 +44,7 @@ const Product: NextPage = () => {
               if (obj.productid === id) {
                 return (
                   <div className="review-card">
-                    <ReviewCard data={obj} />
+                    <ReviewCard data={[obj, reviews, setReviews]} />
                   </div>
                 );
               }
