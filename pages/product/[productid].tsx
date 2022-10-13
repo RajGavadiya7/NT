@@ -14,10 +14,6 @@ const Product: NextPage = () => {
   // Product code page
   return (
     <div>
-      {/* <h1>{obj?.productid}</h1>
-      <h1>{obj?.productname}</h1>
-      <h1>{obj?.discription}</h1>
-      <h1>{obj?.price}</h1> */}
       <div className="container">
         <div className="image-container">
           <img src={obj?.url} alt={obj?.productname} />
@@ -33,12 +29,13 @@ const Product: NextPage = () => {
         <h1>Reviews</h1>
         <hr></hr>
         <div className="reviews-container">
-          {datauser.map((obj: any) => {
-            if (obj.productid === id) {
-              console.log(obj?.productid);
-              return <ReviewCard data={obj} />;
-            }
-          })}
+          <div className="reviews">
+            {datauser.map((obj: any) => {
+              if (obj.productid === id) {
+                return <ReviewCard data={obj} />;
+              }
+            })}
+          </div>
         </div>
       </div>
 
