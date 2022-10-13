@@ -24,7 +24,7 @@ export function CardForm(props: any) {
         {`
         .container{
           width: 96vw;
-          background: transparent;
+          background: ;
         }
           .cards-container{
             display:flex;
