@@ -1,31 +1,36 @@
 // after clicking product from main page we go here
-
+// Modules
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
+import { Badge } from "@mantine/core";
+
+// Components and data
 import dataproduct from "../../database/dummyproducts";
 import datauser from "../../database/dummyusers";
 import ReviewCard from "../../components/ReviewCard";
 import AddReviewForm from "../../components/AddReviewForm";
-import { useState, useEffect } from "react";
-import { Badge } from "@mantine/core";
 
-// next have two ways page or component
-
+// Next have two ways page or component
+// Main
 const Product: NextPage = () => {
+  // Getting the Id
   const router = useRouter();
   const id = router.query.productid;
   const obj = dataproduct.find((o) => o.productid === id);
+  
+  // Array of Revies state
   const [reviews, setReviews] = useState(datauser); 
 
+  // Debug
   useEffect(() => {
     console.log(reviews);
   }, [reviews]);
 
   // Product code page
-  
   return (
     <div>
-      {/* details about card data */}
+      {/* Details about card data */}
       <div className="header">
         <h1>Sasta Amazon</h1>
       </div>
@@ -42,11 +47,13 @@ const Product: NextPage = () => {
         </div>
       </div>
 
+      {/* Reviews */}
       <div className="container-2">
         <h1>Reviews</h1>
         <hr></hr>
         <div className="reviews-container">
           <div className="reviews">
+            {/* Iterate over reviews state and return its unique review card */}
             {
             reviews.map((obj: any) => {
               if (obj.productid === id) {
@@ -58,6 +65,7 @@ const Product: NextPage = () => {
               }
             })}
           </div>
+          {/* Add a review form */}
           <div className="add-review">
             <div className="add-review-card">
               <AddReviewForm data={[id, reviews, setReviews]} />

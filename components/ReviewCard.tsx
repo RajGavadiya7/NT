@@ -1,13 +1,19 @@
+// Modules
 import { Card, Image, Text, Badge, Button, Group } from "@mantine/core";
 import { Avatar } from "@mantine/core";
 import {useEffect, useState} from "react";
+
+// Data
 import currentUser from "../database/currentuser";
 
+// Main
 export default function ReviewCard(data: any) {
+  // Setting the props
   const dataReview = data.data[0];
-  // state of current user
+  // State of current user
   const [isCurrentuser, setIsCurrentuser] = useState(false);
 
+  // Check if the current user is the same as the user who wrote the review
   useEffect(() => {
     if (dataReview.userid === currentUser.userid) {
       setIsCurrentuser(true);
@@ -24,6 +30,8 @@ export default function ReviewCard(data: any) {
           className="avatar"
         />
       </div>
+      
+      {/* Profile Info */}
       <div className="profile-info">
         <div className="details">
           <h3>{dataReview.username}</h3>
@@ -34,7 +42,6 @@ export default function ReviewCard(data: any) {
           {/* A button to edit review */}
         <Badge color="pink" variant="light" size="lg" className="delete" onClick={() => {
             const newReview = data.data[1].filter((obj: any) => {
-              // console.log(data.data[3]);
               return obj.reviewid !== dataReview.reviewid;
             });
             data.data[2](newReview);

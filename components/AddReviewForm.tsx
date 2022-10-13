@@ -1,21 +1,23 @@
-/*
-A form to add reviews.
-*/
-
-// right corner of r.page
-// imports
+// A form to add reviews.
+// import modules
 import { TextInput, Textarea, Button, Group, Box } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import RatingComponent from "./RatingComponent";
 import { useState, useEffect } from "react";
+
+// Components and data
 import datauser from "../database/dummyusers";
+import RatingComponent from "./RatingComponent";
 import currentuser from "../database/currentuser";
+
+// Main export
 export default function AddReviewForm(props: any) {
   
-  // id of the product
+  // Input props
   const id = props.data[0];
+  const reviews = props.data[1];
+  const setReviews = props.data[2];
 
-  // states
+  // States
   const [review, setReview] = useState({
     username: "",
     rating: "",
@@ -37,20 +39,19 @@ export default function AddReviewForm(props: any) {
       userid:"",
     reviewid:""
     },
-  });
+  });  
 
-  const reviews = props.data[1];
-  const setReviews = props.data[2];
-  // update the product id in the review
+  // UseEffect
+  // Update the product id in the review
   useEffect(() => {
     setReview({ ...review, productid: `${id}` });
   }, [id]);
 
 
+  // Check if the user has already reviewed the product
   useEffect(() => {
-// check if the user has already reviewed the product
-let i;    
-for (i = 0; i < props.data[1].length ; i++) {
+    let i;    
+    for (i = 0; i < props.data[1].length ; i++) {
       if(props.data[1][i].userid === currentuser.userid && props.data[1][i].productid === id){
         setIsExist(true);
         break;
@@ -60,10 +61,6 @@ for (i = 0; i < props.data[1].length ; i++) {
       setIsExist(false);
     }
 }, [reviews]);
-
-
-
-  // console.log(review);
 
   return (
     <div>
@@ -114,6 +111,3 @@ for (i = 0; i < props.data[1].length ; i++) {
     </div>
   );
 }
-
-
-// https://jasonwatmore.com/post/2021/08/28/next-js-read-write-data-to-json-files-as-the-database

@@ -1,12 +1,16 @@
 // main page
 
+// Modules
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
+
+// Components
 import dataproduct from "../database/dummyproducts";
 import ProductCard from "../components/ProductCard";
 
+// Main
 const Home: NextPage = () => {
   return (
     <div className={styles.container}>
@@ -20,6 +24,7 @@ const Home: NextPage = () => {
       </div>
       <main className={styles.main}>
         <div className="conainer">
+          {/* Iterate over producs and return its cards along withs its unique dynamic product page link*/}
           {dataproduct.map((obj: any) => {
             return (
               <Link
@@ -47,7 +52,7 @@ const Home: NextPage = () => {
   }
   .card{
     margin:1rem;
-    height:30rem;
+    height:40rem;
     width: 40rem;
   }
   .header{

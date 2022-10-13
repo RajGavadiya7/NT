@@ -1,14 +1,17 @@
+// Modules
 import { Card, Image, Text, Badge, Button, Group } from "@mantine/core";
 
+// Main
 export default function ProductCard(data: any) {
+  // Card data object
   const dataProduct = data.data;
   return (
     <Card shadow="sm" p="lg" radius="md" withBorder>
       <Card.Section>
         <Image
           src={dataProduct.url}
-          height={260}
-          width={500}
+          height={360}
+          width={350}
           alt={dataProduct.productname}
         />
       </Card.Section>

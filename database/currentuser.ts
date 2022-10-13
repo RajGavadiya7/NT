@@ -1,3 +1,4 @@
+// Temporory Current User
 var currentUser = {
     name: 'John Doe',
     userid: "100",
