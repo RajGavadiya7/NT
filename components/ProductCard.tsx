@@ -7,7 +7,7 @@ export default function ProductCard(data: any) {
       <Card.Section>
         <Image
           src={dataProduct.url}
-          height={160}
+          height={260}
           width={500}
           alt={dataProduct.productname}
         />
@@ -15,7 +15,7 @@ export default function ProductCard(data: any) {
 
       <Group position="apart" mt="md" mb="xs">
         <Text weight={500}>{dataProduct.productname}</Text>
-        <Badge color="green" variant="light">
+        <Badge color="green"  variant="light" size="xl">
           {" ₹ " + dataProduct.price}
         </Badge>
       </Group>

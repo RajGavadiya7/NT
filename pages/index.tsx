@@ -7,8 +7,6 @@ import styles from "../styles/Home.module.css";
 import dataproduct from "../database/dummyproducts";
 import ProductCard from "../components/ProductCard";
 
-const current_user_id = 100;
-
 const Home: NextPage = () => {
   return (
     <div className={styles.container}>
@@ -40,18 +38,17 @@ const Home: NextPage = () => {
         {`
   .conainer{
     padding-top: 10vh;
-    width:50vw;
+    width:100w;
     display:flex;
     flex-align:row;
     justify-content:center;
     align-items:center;
     flex-wrap:wrap;
-
   }
   .card{
     margin:1rem;
-    height:50%;
-    width:50%;
+    height:30rem;
+    width: 40rem;
   }
   .header{
     width:100vw;

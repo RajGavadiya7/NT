@@ -1,9 +1,9 @@
 import { NumberInput } from "@mantine/core";
 import { useState, useEffect } from "react";
 
-export default function RatingComponent(data: any) {
-  const [review, setReview] = data.data;
-  const [rating, setRating] = useState(0);
+export default function RatingComponent(props: any) {
+  const [review, setReview] = props.data;
+  const [rating, setRating] = useState(5);
 
   useEffect(() => {
     setReview({ ...review, rating: rating });

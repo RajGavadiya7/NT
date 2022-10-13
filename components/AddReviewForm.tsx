@@ -1,21 +1,32 @@
+/*
+A form to add reviews.
+*/
+
 // right corner of r.page
+// imports
 import { TextInput, Textarea, Button, Group, Box } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import RatingComponent from "./RatingComponent";
 import { useState, useEffect } from "react";
 import datauser from "../database/dummyusers";
-
+import currentuser from "../database/currentuser";
 export default function AddReviewForm(props: any) {
+  
+  // id of the product
   const id = props.data[0];
 
-  // console.log(props);
+  // states
   const [review, setReview] = useState({
     username: "",
     rating: "",
     productid: `${id}`,
     timestamp: "",
     discription: "",
+    userid:"",
+    reviewid:""
   });
+
+  const [isExist, setIsExist] = useState(false);
   const form = useForm({
     initialValues: {
       username: "",
@@ -23,19 +34,41 @@ export default function AddReviewForm(props: any) {
       productid: `${id}`,
       timestamp: "",
       discription: "",
+      userid:"",
+    reviewid:""
     },
   });
 
+  const reviews = props.data[1];
+  const setReviews = props.data[2];
+  // update the product id in the review
   useEffect(() => {
     setReview({ ...review, productid: `${id}` });
   }, [id]);
 
+
+  useEffect(() => {
+// check if the user has already reviewed the product
+let i;    
+for (i = 0; i < props.data[1].length ; i++) {
+      if(props.data[1][i].userid === currentuser.userid && props.data[1][i].productid === id){
+        setIsExist(true);
+        break;
+      }
+    }
+    if(i == props.data[1].length){
+      setIsExist(false);
+    }
+}, [reviews]);
+
+
+
   // console.log(review);
-  const reviews = props.data[1];
-  const setReviews = props.data[2];
 
   return (
-    <Box sx={{ maxWidth: 300 }} mx="auto">
+    <div>
+{/* Main Review form */}
+<Box sx={{ maxWidth: 300 }} mx="auto">
       <form>
         <TextInput
           withAsterisk
@@ -56,15 +89,31 @@ export default function AddReviewForm(props: any) {
         />
         <Group position="right" mt="md">
           <Button
+           className={`${isExist? "dissabled": ""}`}
             onClick={() => {
+              review.reviewid = Math.random().toString(36).substr(2, 9);
+              review.userid = currentuser.userid;
               setReviews([...reviews, review]);
             }}
           >
             Add
           </Button>
-          <Button>Remove</Button>
         </Group>
       </form>
     </Box>
+    <style>
+      {
+        `
+        .dissabled{
+          display:none;
+        }
+          `
+      }
+    </style>
+
+    </div>
   );
 }
+
+
+// https://jasonwatmore.com/post/2021/08/28/next-js-read-write-data-to-json-files-as-the-database

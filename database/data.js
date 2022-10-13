@@ -1,5 +1,4 @@
 const { Client } = require("pg");
-// const { get, add } = require("./data.js");
 
 const client = new Client({
   host: "localhost",
@@ -10,10 +9,10 @@ const client = new Client({
 });
 
 client.connect();
-
 // console.log(client);
-
 // module.exports = {client};
+
+
 
 function average_rating(product_id) {
   var str =
@@ -27,4 +26,3 @@ function average_rating(product_id) {
   });
 }
 
-// client.end;

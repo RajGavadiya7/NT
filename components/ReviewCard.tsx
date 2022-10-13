@@ -1,34 +1,47 @@
 import { Card, Image, Text, Badge, Button, Group } from "@mantine/core";
 import { Avatar } from "@mantine/core";
+import {useEffect, useState} from "react";
+import currentUser from "../database/currentuser";
+
 export default function ReviewCard(data: any) {
   const dataReview = data.data[0];
+  // state of current user
+  const [isCurrentuser, setIsCurrentuser] = useState(false);
+
+  useEffect(() => {
+    if (dataReview.userid === currentUser.userid) {
+      setIsCurrentuser(true);
+    }
+  }, []);
+
   return (
     <div className="review-container">
       <div className="profile-pic">
         <Avatar
-          src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngitem.com%2Fmiddle%2FTiooiRo_avatar-dummy-png-transparent-png%2F&psig=AOvVaw0NG15zK-wkjXvlcxYUcEwN&ust=1665693199028000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMD33-zE2_oCFQAAAAAdAAAAABAE"
+          src="https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper.png"
           alt="it's me"
           size="xl"
-          radius="xl"
+          className="avatar"
         />
       </div>
       <div className="profile-info">
         <div className="details">
           <h3>{dataReview.username}</h3>
-          <p>{dataReview.rating}</p>
+          <p>{dataReview.rating + " ★ "}</p>
         </div>
         <p>{dataReview.discription}</p>
-        <p
-          className="delete"
-          onClick={() => {
+        <div className={`${isCurrentuser? "": "dissabled"}`}>
+          {/* A button to edit review */}
+        <Badge color="pink" variant="light" size="lg" className="delete" onClick={() => {
             const newReview = data.data[1].filter((obj: any) => {
-              return obj.id !== dataReview.id;
+              // console.log(data.data[3]);
+              return obj.reviewid !== dataReview.reviewid;
             });
             data.data[2](newReview);
-          }}
-        >
-          Delete
-        </p>
+          }}>
+          EDIT
+        </Badge>
+        </div>
       </div>
       <style>
         {`
@@ -38,10 +51,14 @@ export default function ReviewCard(data: any) {
                 display:flex;
                 flex-direction:row;
                 align-items:center;
-                background:#dedede;
+                background:#ffffff;
                 margin-top:1rem;
                 padding:1rem;
                 position:relative;
+                border-radius:10px;
+            }
+            .avatar{
+              border-radius:50%;
             }
 
             .profile-info{
@@ -67,8 +84,12 @@ export default function ReviewCard(data: any) {
               color: red;
               position:absolute;
               right:1rem;
-              bottom:0rem;
+              bottom:1rem;
               cursor:pointer;
+              display: ;
+            }
+            .dissabled{
+              display:none;
             }
         `}
       </style>

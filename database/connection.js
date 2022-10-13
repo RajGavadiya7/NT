@@ -1,6 +1,4 @@
 const { Client } = require("pg");
-// const { get, add } = require("./data.js");
-
 
 const client = new Client({
   host: "localhost",
@@ -12,9 +10,10 @@ const client = new Client({
 
 client.connect();
 
-console.log(client);
+client.query('select * from "Product" ' , (err , result) => {
+  if(!err){
+    console.log(result.rows);
+  }
+  client.end();
+});
 
-module.exports = {client};
-
-
-// client.end;
