@@ -10,7 +10,6 @@ import dataproduct from "../../database/dummyproducts";
 import datauser from "../../database/dummyusers";
 import ReviewCard from "../../components/ReviewCard";
 import AddReviewForm from "../../components/AddReviewForm";
-
 // Next have two ways page or component
 // Main
 const Product: NextPage = () => {
@@ -18,9 +17,9 @@ const Product: NextPage = () => {
   const router = useRouter();
   const id = router.query.productid;
   const obj = dataproduct.find((o) => o.productid === id);
-  
+
   // Array of Revies state
-  const [reviews, setReviews] = useState(datauser); 
+  const [reviews, setReviews] = useState(datauser);
 
   // Debug
   useEffect(() => {
@@ -42,8 +41,8 @@ const Product: NextPage = () => {
           <h1>{obj?.productname}</h1>
           <p>{obj?.discription}</p>
           <Badge color="green" variant="light" size="xl">
-          {" ₹ " + obj?.price}
-        </Badge>
+            {" ₹ " + obj?.price}
+          </Badge>
         </div>
       </div>
 
@@ -54,12 +53,11 @@ const Product: NextPage = () => {
         <div className="reviews-container">
           <div className="reviews">
             {/* Iterate over reviews state and return its unique review card */}
-            {
-            reviews.map((obj: any, key:number) => {
+            {reviews.map((obj: any, key: number) => {
               if (obj.productid === id) {
                 return (
                   <div className="review-card" key={key}>
-                    <ReviewCard data={[obj, reviews, setReviews]} key={key}/>
+                    <ReviewCard data={[obj, reviews, setReviews]} key={key} />
                   </div>
                 );
               }
@@ -94,13 +92,13 @@ const Product: NextPage = () => {
           background-color: #cfe6dc;
         }
             .container-1{
+              display:flex;
+              flex-direction:row;
+              align-items:center;
               margin-top:60px;
               padding:20px;
                 width:100%;  
                 height:30rem;
-                display:flex;
-                flex-direction:row;
-                align-items:center;
                 background:#f6e6f7;
             }
 
