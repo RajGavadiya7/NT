@@ -73,6 +73,11 @@
   max-width: 800px;
 }
 
+.dark {
+  background-color: #2a2a2a;
+  color: #fff;
+}
+
 .card {
   height: 10rem;
   margin: 1rem;

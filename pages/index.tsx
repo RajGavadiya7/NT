@@ -9,9 +9,12 @@ import styles from "../styles/Home.module.css";
 // Components
 import dataproduct from "../database/dummyproducts";
 import ProductCard from "../components/ProductCard";
-
+import { useState } from "react";
+import { Button } from "@mantine/core";
 // Main
 const Home: NextPage = () => {
+  const [dark, setDark] = useState(true);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -20,12 +23,25 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="header">
+        <Button
+          onClick={() => {
+            setDark(!dark);
+          }}
+          color={dark ? "blue" : "red"}
+          style={{
+            position: "fixed",
+            top: "10px",
+            right: "10px",
+          }}
+        >
+          {dark ? "light" : "dark"}
+        </Button>
         <h1>B4Buy</h1>
       </div>
-      <main className={styles.main}>
+      <main className={!dark ? styles.main : `${styles.main} dark`}>
         <div className="conainer">
           {/* Iterate over producs and return its cards along withs its unique dynamic product page link*/}
-          {dataproduct.map((obj: any, key:number) => {
+          {dataproduct.map((obj: any, key: number) => {
             return (
               <Link
                 href="/product/[obj.productid]"
@@ -33,7 +49,7 @@ const Home: NextPage = () => {
                 key={key}
               >
                 <div className="card" key={key}>
-                  <ProductCard data={obj} />
+                  <ProductCard data={{ ...obj, dark }} />
                 </div>
               </Link>
             );

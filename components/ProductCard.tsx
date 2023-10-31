@@ -1,12 +1,19 @@
 // Modules
 import { Card, Image, Text, Badge, Button, Group } from "@mantine/core";
-
+import style from "../styles/Home.module.css";
 // Main
 export default function ProductCard(data: any) {
   // Card data object
   const dataProduct = data.data;
   return (
-    <Card shadow="sm" p="lg" radius="md" withBorder style={{boxShadow: "0 0 50px #00000039"}}>
+    <Card
+      shadow="sm"
+      p="lg"
+      radius="md"
+      withBorder
+      className={dataProduct.dark ? "dark" : ""}
+      style={{ boxShadow: "0 0 50px #00000039" }}
+    >
       <Card.Section>
         <Image
           src={dataProduct.url}
