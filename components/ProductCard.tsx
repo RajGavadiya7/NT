@@ -10,8 +10,8 @@ export default function ProductCard(data: any) {
       <Card.Section>
         <Image
           src={dataProduct.url}
-          height={360}
-          width={350}
+          height={260}
+          width={250}
           alt={dataProduct.productname}
         />
       </Card.Section>
